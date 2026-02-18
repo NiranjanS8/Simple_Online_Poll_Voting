@@ -19,9 +19,8 @@ public class Poll {
     private  String question;
 
     @ElementCollection    //create a different table in db
-    private List<String> options = new ArrayList<>();
+    private List<OptionVOte> options = new ArrayList<>();
 
-    @ElementCollection    //create a different table in db
-    private List<Long> votes = new ArrayList<>();
+
 
 }
