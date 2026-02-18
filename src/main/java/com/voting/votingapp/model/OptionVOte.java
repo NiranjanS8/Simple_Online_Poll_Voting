@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class OptionVOte {
 
-    private String option;
-    private Long voteCount = 0l;
+    private String voteOption;
+    private Long voteCount = 0L;
 }
