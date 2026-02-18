@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VotePulse — Online Polling</title>
+    <meta name="description" content="Create and vote on polls in real-time with VotePulse.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand" onclick="router.navigate('browse')">
+            <span class="brand-icon">◉</span>
+            <span class="brand-text">VotePulse</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn active" id="nav-browse" onclick="router.navigate('browse')">Browse</button>
+            <button class="nav-btn" id="nav-create" onclick="router.navigate('create')">
+                <span class="plus-icon">+</span> Create
+            </button>
+        </div>
+    </nav>
+
+    <!-- Browse Polls View -->
+    <main id="view-browse" class="view active">
+        <div class="view-header">
+            <h1>Live Polls</h1>
+            <p class="subtitle">Vote on what matters to you</p>
+        </div>
+        <div id="polls-grid" class="polls-grid">
+            <!-- Polls loaded dynamically -->
+        </div>
+        <div id="empty-state" class="empty-state hidden">
+            <div class="empty-icon">📊</div>
+            <h2>No polls yet</h2>
+            <p>Be the first to create a poll!</p>
+            <button class="btn btn-primary" onclick="router.navigate('create')">Create a Poll</button>
+        </div>
+    </main>
+
+    <!-- Create Poll View -->
+    <main id="view-create" class="view">
+        <div class="view-header">
+            <h1>Create a Poll</h1>
+            <p class="subtitle">Ask a question, get answers</p>
+        </div>
+        <form id="create-form" class="create-form" onsubmit="return handleCreatePoll(event)">
+            <div class="form-group">
+                <label for="poll-question">Your Question</label>
+                <input type="text" id="poll-question" class="form-input" placeholder="What do you want to ask?" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label>Options</label>
+                <div id="options-container">
+                    <div class="option-row">
+                        <input type="text" class="form-input option-input" placeholder="Option 1" required>
+                    </div>
+                    <div class="option-row">
+                        <input type="text" class="form-input option-input" placeholder="Option 2" required>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-ghost add-option-btn" onclick="addOptionInput()">
+                    <span class="plus-icon">+</span> Add Option
+                </button>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+                <span class="btn-text">Create Poll</span>
+                <span class="btn-loader hidden"></span>
+            </button>
+        </form>
+    </main>
+
+    <!-- Poll Detail View -->
+    <main id="view-detail" class="view">
+        <button class="back-btn" onclick="router.navigate('browse')">← Back to Polls</button>
+        <div id="detail-content">
+            <!-- Loaded dynamically -->
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
